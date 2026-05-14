@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Starry Wang — Professional Headshot Photography</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #111111;
+      --gray:       #666666;
+      --light-gray: #f7f7f7;
+      --border:     #e8e8e8;
+      --white:      #ffffff;
+      --gold:       #c9a96e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ─── LANGUAGE TOGGLE ─── */
+    .zh { display: none; }
+    body.lang-zh .en { display: none !important; }
+    body.lang-zh .zh { display: revert !important; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      padding: 20px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--black); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lang-btn {
+      background: none;
+      border: 1px solid var(--border);
+      padding: 7px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover { border-color: var(--black); color: var(--black); }
+
+    .nav-cta {
+      font-size: 12px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 10px 24px;
+      background: var(--black);
+      color: var(--white);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: #333; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      padding: 120px 60px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(44px, 5.2vw, 74px);
+      line-height: 1.08;
+      margin-bottom: 30px;
+    }
+
+    .hero-title em { font-style: italic; color: var(--gray); }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--gray);
+      line-height: 1.85;
+      max-width: 400px;
+      margin-bottom: 48px;
+    }
+
+    .hero-actions { display: flex; gap: 24px; align-items: center; }
+
+    .btn-primary {
+      padding: 14px 32px;
+      background: var(--black);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #333; }
+
+    .btn-ghost {
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gray);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--black); border-color: var(--black); }
+
+    .hero-img-wrap { position: relative; }
+
+    .hero-img-wrap img {
+      width: 100%;
+      height: 85vh;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--white);
+      padding: 18px 24px;
+      border: 1px solid var(--border);
+    }
+
+    .badge-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      display: block;
+      line-height: 1;
+    }
+
+    .badge-lbl {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ─── SECTION BASE ─── */
+    .section { padding: 100px 60px; }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .sec-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 3.2vw, 50px);
+      line-height: 1.15;
+    }
+
+    .sec-sub {
+      font-size: 15px;
+      color: var(--gray);
+      line-height: 1.85;
+      max-width: 520px;
+    }
+
+    /* ─── PORTFOLIO ─── */
+    #work { background: var(--light-gray); }
+
+    .portfolio-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 52px;
+      gap: 40px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+    }
+
+    .portfolio-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .portfolio-item.tall { grid-row: span 2; }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      min-height: 340px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .portfolio-item.tall img { min-height: 0; }
+    .portfolio-item:hover img { transform: scale(1.04); }
+
+    .p-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(17,17,17,0);
+      display: flex;
+      align-items: flex-end;
+      padding: 22px;
+      transition: background 0.3s;
+    }
+
+    .portfolio-item:hover .p-overlay { background: rgba(17,17,17,0.38); }
+
+    .p-tag {
+      color: white;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .portfolio-item:hover .p-tag { opacity: 1; transform: translateY(0); }
+
+    /* ─── SERVICES ─── */
+    #services { background: var(--white); }
+
+    .services-head { text-align: center; margin-bottom: 72px; }
+    .services-head .sec-sub { margin: 14px auto 0; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1060px;
+      margin: 0 auto;
+      border: 1px solid var(--border);
+    }
+
+    .pricing-card {
+      padding: 48px 38px;
+      border-right: 1px solid var(--border);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pricing-card:last-child { border-right: none; }
+
+    .pricing-card.featured {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      background: var(--gold);
+      color: white;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 18px;
+      white-space: nowrap;
+    }
+
+    .p-tier {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+
+    .pricing-card.featured .p-tier { color: rgba(255,255,255,0.45); }
+
+    .p-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 50px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .p-amount sup {
+      font-size: 24px;
+      vertical-align: super;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+    }
+
+    .p-desc {
+      font-size: 13px;
+      color: var(--gray);
+      margin-bottom: 28px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.7;
+    }
+
+    .pricing-card.featured .p-desc { color: rgba(255,255,255,0.5); border-bottom-color: rgba(255,255,255,0.12); }
+
+    .p-features { list-style: none; flex: 1; margin-bottom: 36px; }
+
+    .p-feat {
+      font-size: 13px;
+      color: var(--gray);
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .pricing-card.featured .p-feat { color: rgba(255,255,255,0.6); border-bottom-color: rgba(255,255,255,0.1); }
+
+    .p-feat::before { content: '✓'; color: var(--gold); font-size: 12px; flex-shrink: 0; }
+
+    .p-cta {
+      display: block;
+      text-align: center;
+      padding: 13px;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .p-cta-outline { border: 1px solid var(--black); color: var(--black); }
+    .p-cta-outline:hover { background: var(--black); color: var(--white); }
+    .p-cta-white { background: var(--white); color: var(--black); }
+    .p-cta-white:hover { background: var(--gold); color: var(--white); }
+
+    /* ─── ABOUT ─── */
+    #about {
+      background: var(--light-gray);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .about-img img { width: 100%; height: 600px; object-fit: cover; display: block; }
+
+    .about-body .sec-sub { margin-top: 18px; max-width: none; }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 44px;
+      padding-top: 44px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 38px; display: block; margin-bottom: 4px; }
+    .stat-lbl { font-size: 10px; letter-spacing: 1.5px; color: var(--gray); text-transform: uppercase; }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--white); }
+
+    .contact-head { text-align: center; margin-bottom: 68px; }
+    .contact-head .sec-sub { margin: 14px auto 0; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 80px;
+    }
+
+    .ci-lbl { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 7px; }
+    .ci-val { font-size: 15px; color: var(--black); margin-bottom: 32px; }
+    .ci-val a { color: inherit; }
+
+    .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .fg { display: flex; flex-direction: column; gap: 6px; }
+    .fg.wide { grid-column: span 2; }
+
+    .fg label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
+
+    .fg input, .fg select, .fg textarea {
+      padding: 13px 14px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--black); }
+    .fg textarea { resize: vertical; min-height: 120px; }
+
+    .form-btn {
+      grid-column: span 2;
+      padding: 16px;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .form-btn:hover { background: #333; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 40px 60px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 15px; letter-spacing: 2.5px; text-transform: uppercase; }
+    .footer-copy { font-size: 12px; color: var(--gray); }
+    .footer-links { display: flex; gap: 22px; }
+
+    .footer-links a {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--black); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .section { padding: 68px 24px; }
+
+      .hero { grid-template-columns: 1fr; padding: 96px 24px 60px; gap: 40px; }
+      .hero-img-wrap img { height: 55vw; }
+
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .portfolio-item.tall { grid-row: span 1; }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        border: none;
+        gap: 1px;
+      }
+      .pricing-card { border: 1px solid var(--border); border-right: 1px solid var(--border) !important; }
+
+      #about { grid-template-columns: 1fr; gap: 40px; }
+      .about-img img { height: 65vw; }
+
+      .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+      .contact-form { grid-template-columns: 1fr; }
+      .fg.wide, .form-btn { grid-column: span 1; }
+
+      footer { flex-direction: column; gap: 18px; text-align: center; padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─────────────────────────────────────
+     NAVIGATION
+──────────────────────────────────────── -->
+<nav id="nav">
+  <a href="#home" class="nav-logo" id="nav-logo">Starry Wang</a>
+  <ul class="nav-links">
+    <li><a href="#work"><span class="en">Work</span><span class="zh">作品</span></a></li>
+    <li><a href="#services"><span class="en">Services</span><span class="zh">服务</span></a></li>
+    <li><a href="#about"><span class="en">About</span><span class="zh">关于</span></a></li>
+    <li><a href="#contact"><span class="en">Contact</span><span class="zh">联系</span></a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="lang-btn" onclick="toggleLang()" id="lang-btn">中文</button>
+    <a href="#contact" class="nav-cta"><span class="en">Book a Session</span><span class="zh">预约拍摄</span></a>
+  </div>
+</nav>
+
+
+<!-- ─────────────────────────────────────
+     HERO
+──────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div>
+    <p class="hero-eyebrow">
+      <span class="en">Professional Headshot Photography · New York</span>
+      <span class="zh">专业形象照摄影 · 纽约</span>
+    </p>
+    <h1 class="hero-title">
+      <span class="en">Your story,<br><em>perfectly</em><br>framed.</span>
+      <span class="zh">你的故事，<br><em>完美</em><br>定格。</span>
+    </h1>
+    <p class="hero-sub">
+      <span class="en">I create headshots that open doors — clean, confident, and unmistakably you. Trusted by executives, creatives, and professionals across New York.</span>
+      <span class="zh">我专注打造令人印象深刻的职业形象照——简洁、自信、100% 是你自己。深受纽约各行业高管、创业者与创意人的信任。</span>
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        <span class="en">Book a Session</span><span class="zh">立即预约</span>
+      </a>
+      <a href="#work" class="btn-ghost">
+        <span class="en">View Portfolio</span><span class="zh">查看作品</span>
+      </a>
+    </div>
+  </div>
+  <div class="hero-img-wrap">
+    <img src="https://picsum.photos/seed/sw-hero/800/1000" alt="Featured headshot" />
+    <div class="hero-badge">
+      <span class="badge-num" id="stat-clients">200+</span>
+      <span class="badge-lbl"><span class="en">Clients served</span><span class="zh">服务客户</span></span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────
+     PORTFOLIO
+──────────────────────────────────────── -->
+<section class="section" id="work">
+  <div class="portfolio-header">
+    <div>
+      <p class="eyebrow"><span class="en">Portfolio</span><span class="zh">作品集</span></p>
+      <h2 class="sec-title"><span class="en">Selected Work</span><span class="zh">精选作品</span></h2>
+    </div>
+    <p class="sec-sub">
+      <span class="en">A curated selection of recent headshot sessions for executives, creatives, and entrepreneurs.</span>
+      <span class="zh">近期部分客户拍摄作品，涵盖高管、创业者与创意人。</span>
+    </p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-item tall">
+      <img src="https://picsum.photos/seed/sw-p1/600/900" alt="Headshot" />
+      <div class="p-overlay"><span class="p-tag"><span class="en">Executive</span><span class="zh">高管</span></span></div>
+    </div>
+    <div class="portfolio-item">
+      <img src="https://picsum.photos/seed/sw-p2/600/800" alt="Headshot" />
+      <div class="p-overlay"><span class="p-tag"><span class="en">Creative</span><span class="zh">创意</span></span></div>
+    </div>
+    <div class="portfolio-item">
+      <img src="https://picsum.photos/seed/sw-p3/600/800" alt="Headshot" />
+      <div class="p-overlay"><span class="p-tag"><span class="en">Corporate</span><span class="zh">企业</span></span></div>
+    </div>
+    <div class="portfolio-item">
+      <img src="https://picsum.photos/seed/sw-p4/600/800" alt="Headshot" />
+      <div class="p-overlay"><span class="p-tag"><span class="en">Entrepreneur</span><span class="zh">创业者</span></span></div>
+    </div>
+    <div class="portfolio-item">
+      <img src="https://picsum.photos/seed/sw-p5/600/800" alt="Headshot" />
+      <div class="p-overlay"><span class="p-tag"><span class="en">Actor</span><span class="zh">演员</span></span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────
+     SERVICES & PRICING
+──────────────────────────────────────── -->
+<section class="section" id="services">
+  <div class="services-head">
+    <p class="eyebrow"><span class="en">Services & Pricing</span><span class="zh">服务与定价</span></p>
+    <h2 class="sec-title"><span class="en">Choose Your Session</span><span class="zh">选择您的套餐</span></h2>
+    <p class="sec-sub">
+      <span class="en">Every session includes professional retouching, a private gallery, and high-res files ready to use anywhere.</span>
+      <span class="zh">所有套餐均包含专业精修、私人相册及高分辨率原图，随时可用。</span>
+    </p>
+  </div>
+
+  <div class="pricing-grid">
+
+    <!-- Essential -->
+    <div class="pricing-card">
+      <p class="p-tier"><span class="en">Essential</span><span class="zh">基础版</span></p>
+      <div class="p-amount"><sup>$</sup><span class="price-essential">299</span></div>
+      <p class="p-desc">
+        <span class="en">Perfect for LinkedIn profiles and professional bios.</span>
+        <span class="zh">适合 LinkedIn 主页及专业简介更新。</span>
+      </p>
+      <ul class="p-features">
+        <li class="p-feat"><span class="en">30-minute session</span><span class="zh">30 分钟拍摄</span></li>
+        <li class="p-feat"><span class="en">1 outfit / 1 backdrop</span><span class="zh">1 套服装 / 1 款背景</span></li>
+        <li class="p-feat"><span class="en">10 final edited photos</span><span class="zh">10 张精修照片</span></li>
+        <li class="p-feat"><span class="en">Private online gallery</span><span class="zh">私人在线相册</span></li>
+        <li class="p-feat"><span class="en">High-res digital files</span><span class="zh">高分辨率原图</span></li>
+      </ul>
+      <a href="#contact" class="p-cta p-cta-outline">
+        <span class="en">Book Now</span><span class="zh">立即预约</span>
+      </a>
+    </div>
+
+    <!-- Professional (featured) -->
+    <div class="pricing-card featured">
+      <span class="popular-badge"><span class="en">Most Popular</span><span class="zh">最受欢迎</span></span>
+      <p class="p-tier"><span class="en">Professional</span><span class="zh">专业版</span></p>
+      <div class="p-amount"><sup>$</sup><span class="price-professional">549</span></div>
+      <p class="p-desc">
+        <span class="en">Ideal for executives, speakers, and thought leaders.</span>
+        <span class="zh">适合高管、演讲者及意见领袖。</span>
+      </p>
+      <ul class="p-features">
+        <li class="p-feat"><span class="en">60-minute session</span><span class="zh">60 分钟拍摄</span></li>
+        <li class="p-feat"><span class="en">2 outfits / 2 backdrops</span><span class="zh">2 套服装 / 2 款背景</span></li>
+        <li class="p-feat"><span class="en">25 final edited photos</span><span class="zh">25 张精修照片</span></li>
+        <li class="p-feat"><span class="en">Private online gallery</span><span class="zh">私人在线相册</span></li>
+        <li class="p-feat"><span class="en">High-res digital files</span><span class="zh">高分辨率原图</span></li>
+        <li class="p-feat"><span class="en">LinkedIn profile review</span><span class="zh">LinkedIn 主页优化建议</span></li>
+      </ul>
+      <a href="#contact" class="p-cta p-cta-white">
+        <span class="en">Book Now</span><span class="zh">立即预约</span>
+      </a>
+    </div>
+
+    <!-- Premium -->
+    <div class="pricing-card">
+      <p class="p-tier"><span class="en">Premium</span><span class="zh">高级版</span></p>
+      <div class="p-amount"><sup>$</sup><span class="price-premium">899</span></div>
+      <p class="p-desc">
+        <span class="en">For brands, teams, and multi-purpose content needs.</span>
+        <span class="zh">适合品牌、团队及多用途内容创作。</span>
+      </p>
+      <ul class="p-features">
+        <li class="p-feat"><span class="en">90-minute session</span><span class="zh">90 分钟拍摄</span></li>
+        <li class="p-feat"><span class="en">3 outfits / multiple backdrops</span><span class="zh">3 套服装 / 多款背景</span></li>
+        <li class="p-feat"><span class="en">50 final edited photos</span><span class="zh">50 张精修照片</span></li>
+        <li class="p-feat"><span class="en">Private online gallery</span><span class="zh">私人在线相册</span></li>
+        <li class="p-feat"><span class="en">High-res digital files</span><span class="zh">高分辨率原图</span></li>
+        <li class="p-feat"><span class="en">LinkedIn profile review</span><span class="zh">LinkedIn 主页优化建议</span></li>
+        <li class="p-feat"><span class="en">Priority 48-hr turnaround</span><span class="zh">优先处理，48 小时交付</span></li>
+      </ul>
+      <a href="#contact" class="p-cta p-cta-outline">
+        <span class="en">Book Now</span><span class="zh">立即预约</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────
+     ABOUT
+──────────────────────────────────────── -->
+<section class="section" id="about">
+  <div class="about-img">
+    <img src="https://picsum.photos/seed/sw-about/700/800" alt="Starry Wang" />
+  </div>
+  <div class="about-body">
+    <p class="eyebrow"><span class="en">About</span><span class="zh">关于</span></p>
+    <h2 class="sec-title">
+      <span class="en">Hi, I'm Starry.</span>
+      <span class="zh">你好，我是 Starry。</span>
+    </h2>
+    <p class="sec-sub">
+      <!-- ✏️ FILL IN: Replace [your background] with your real background -->
+      <span class="en">Based in New York, I specialize in headshots that feel both authentic and polished. My background in [your background] shapes how I work with clients — I know how to put people at ease and draw out a genuine expression.</span>
+      <span class="zh">我在纽约专注于职业形象照拍摄，擅长捕捉自然而精致的瞬间。凭借[你的背景]，我深知如何让客户放松，呈现最真实的状态。</span>
+    </p>
+    <p class="sec-sub">
+      <span class="en">Whether you're refreshing your LinkedIn, building a personal brand, or need photos for press — I'll make sure you look exactly how you want to be seen.</span>
+      <span class="zh">无论是更新 LinkedIn 头像、打造个人品牌，还是备用于媒体报道——我都会确保你呈现出最想展示的自己。</span>
+    </p>
+    <div class="about-stats">
+      <div>
+        <span class="stat-num" id="stat-clients-about">200+</span>
+        <span class="stat-lbl"><span class="en">Clients</span><span class="zh">服务客户</span></span>
+      </div>
+      <div>
+        <span class="stat-num" id="stat-rating">5★</span>
+        <span class="stat-lbl"><span class="en">Avg Rating</span><span class="zh">平均评分</span></span>
+      </div>
+      <div>
+        <span class="stat-num" id="stat-years">3</span>
+        <span class="stat-lbl"><span class="en">Yrs Experience</span><span class="zh">年从业经验</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────
+     CONTACT
+──────────────────────────────────────── -->
+<section class="section" id="contact">
+  <div class="contact-head">
+    <p class="eyebrow"><span class="en">Contact</span><span class="zh">联系</span></p>
+    <h2 class="sec-title">
+      <span class="en">Let's Work Together</span>
+      <span class="zh">期待与你合作</span>
+    </h2>
+    <p class="sec-sub">
+      <span class="en">Fill out the form and I'll get back to you within 24 hours.</span>
+      <span class="zh">填写表单，我会在 24 小时内与你联系。</span>
+    </p>
+  </div>
+  <div class="contact-grid">
+    <!-- Info column -->
+    <div>
+      <p class="ci-lbl"><span class="en">Email</span><span class="zh">邮箱</span></p>
+      <p class="ci-val"><a id="contact-email" href="#">—</a></p>
+
+      <p class="ci-lbl"><span class="en">Location</span><span class="zh">地点</span></p>
+      <p class="ci-val">
+        <span class="en">New York, NY · Studio + On-location available</span>
+        <span class="zh">纽约 · 工作室拍摄 / 外拍均可</span>
+      </p>
+
+      <p class="ci-lbl"><span class="en">Turnaround</span><span class="zh">交付周期</span></p>
+      <p class="ci-val">
+        <span class="en">Photos delivered within 5–7 business days</span>
+        <span class="zh">5–7 个工作日内交付</span>
+      </p>
+
+      <p class="ci-lbl"><span class="en">Follow</span><span class="zh">关注我</span></p>
+      <p class="ci-val">
+        <a id="link-instagram" href="#" target="_blank">Instagram</a>
+        &ensp;·&ensp;
+        <a id="link-linkedin" href="#" target="_blank">LinkedIn</a>
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="fg">
+        <label><span class="en">First Name</span><span class="zh">名</span></label>
+        <input type="text" placeholder="Jane" required />
+      </div>
+      <div class="fg">
+        <label><span class="en">Last Name</span><span class="zh">姓</span></label>
+        <input type="text" placeholder="Smith" required />
+      </div>
+      <div class="fg">
+        <label><span class="en">Email</span><span class="zh">邮箱</span></label>
+        <input type="email" placeholder="jane@company.com" required />
+      </div>
+      <div class="fg">
+        <label><span class="en">Phone (optional)</span><span class="zh">电话（选填）</span></label>
+        <input type="tel" placeholder="+1 (212) 000-0000" />
+      </div>
+      <div class="fg wide">
+        <label><span class="en">Interested In</span><span class="zh">感兴趣的套餐</span></label>
+        <select>
+          <option value=""><span class="en">Select a package...</span></option>
+          <option class="en" value="essential">Essential — $<span class="price-essential">299</span></option>
+          <option class="en" value="professional">Professional — $<span class="price-professional">549</span></option>
+          <option class="en" value="premium">Premium — $<span class="price-premium">899</span></option>
+          <option class="en" value="custom">Custom / Team Shoot</option>
+        </select>
+      </div>
+      <div class="fg wide">
+        <label><span class="en">Message</span><span class="zh">留言</span></label>
+        <textarea>
+        </textarea>
+      </div>
+      <button type="submit" class="form-btn">
+        <span class="en">Send Message</span><span class="zh">发送消息</span>
+      </button>
+    </form>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────
+     FOOTER
+──────────────────────────────────────── -->
+<footer>
+  <span class="footer-logo" id="footer-name">Starry Wang</span>
+  <span class="footer-copy">
+    <span class="en">© 2026 Starry Wang Photography. All rights reserved.</span>
+    <span class="zh">© 2026 Starry Wang Photography 版权所有</span>
+  </span>
+  <div class="footer-links">
+    <a id="footer-instagram" href="#" target="_blank">Instagram</a>
+    <a id="footer-linkedin"  href="#" target="_blank">LinkedIn</a>
+    <a id="footer-wechat"    href="#">WeChat</a>
+  </div>
+</footer>
+
+
+<!-- ─────────────────────────────────────
+     SCRIPT
+──────────────────────────────────────── -->
+<script>
+/* ══════════════════════════════════════════════
+   🎯 YOUR INFO — EDIT THIS BLOCK
+   ══════════════════════════════════════════════ */
+const CONFIG = {
+  name:       "Starry Wang",          // Your name (appears in nav + footer)
+  email:      "hello@starrywang.com", // ✏️ Replace with your real email
+  instagram:  "https://instagram.com/yourhandle",  // ✏️ Your Instagram URL
+  linkedin:   "https://linkedin.com/in/yourprofile", // ✏️ Your LinkedIn URL
+  wechat:     "#",                    // ✏️ WeChat link or page
+
+  stats: {
+    clients: "200+",  // ✏️ Number of clients
+    rating:  "5★",   // ✏️ Your rating
+    years:   "3",    // ✏️ Years of experience
+  },
+
+  pricing: {
+    essential:    299,  // ✏️ Essential package price
+    professional: 549,  // ✏️ Professional package price
+    premium:      899,  // ✏️ Premium package price
+  },
+};
+/* ══════════════════════════════════════════════ */
+
+
+/* ─ Populate CONFIG values into the page ─ */
+function init() {
+  // Name
+  document.querySelectorAll('#nav-logo, #footer-name').forEach(el => el.textContent = CONFIG.name);
+
+  // Email
+  const emailEl = document.getElementById('contact-email');
+  if (emailEl) { emailEl.href = `mailto:${CONFIG.email}`; emailEl.textContent = CONFIG.email; }
+
+  // Links
+  ['instagram','linkedin','wechat'].forEach(key => {
+    ['link-' + key, 'footer-' + key].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.href = CONFIG[key];
+    });
+  });
+
+  // Stats
+  const s = CONFIG.stats;
+  document.querySelectorAll('#stat-clients, #stat-clients-about').forEach(el => el.textContent = s.clients);
+  const r = document.getElementById('stat-rating'); if (r) r.textContent = s.rating;
+  const y = document.getElementById('stat-years');  if (y) y.textContent = s.years;
+
+  // Pricing
+  document.querySelectorAll('.price-essential').forEach(el    => el.textContent = CONFIG.pricing.essential);
+  document.querySelectorAll('.price-professional').forEach(el => el.textContent = CONFIG.pricing.professional);
+  document.querySelectorAll('.price-premium').forEach(el      => el.textContent = CONFIG.pricing.premium);
+
+  // Rebuild select options with real prices
+  const sel = document.querySelector('.contact-form select');
+  if (sel) {
+    sel.innerHTML = `
+      <option value="" class="en">Select a package... / 请选择套餐...</option>
+      <option value="essential">Essential — $${CONFIG.pricing.essential}</option>
+      <option value="professional">Professional — $${CONFIG.pricing.professional}</option>
+      <option value="premium">Premium — $${CONFIG.pricing.premium}</option>
+      <option value="custom">Custom / Team · 定制 / 团队</option>
+    `;
+  }
+
+  // Form textarea placeholder
+  const ta = document.querySelector('.contact-form textarea');
+  if (ta) ta.placeholder = document.body.classList.contains('lang-zh')
+    ? '告诉我你的需求...'
+    : "Tell me a little about what you're looking for...";
+}
+
+
+/* ─ Language toggle ─ */
+let currentLang = 'en';
+
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'zh' : 'en';
+  document.body.classList.toggle('lang-zh');
+  document.getElementById('lang-btn').textContent = currentLang === 'en' ? '中文' : 'EN';
+
+  // update textarea placeholder
+  const ta = document.querySelector('.contact-form textarea');
+  if (ta) ta.placeholder = currentLang === 'zh'
+    ? '告诉我你的需求...'
+    : "Tell me a little about what you're looking for...";
+
+  // update page title
+  document.title = currentLang === 'zh'
+    ? `${CONFIG.name} — 专业形象照摄影`
+    : `${CONFIG.name} — Professional Headshot Photography`;
+}
+
+
+/* ─ Navbar shadow on scroll ─ */
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').style.boxShadow =
+    window.scrollY > 40 ? '0 2px 24px rgba(0,0,0,0.07)' : 'none';
+});
+
+
+/* ─ Contact form feedback ─ */
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-btn');
+  const isZh = document.body.classList.contains('lang-zh');
+  btn.innerHTML = isZh ? '消息已发送 ✓' : 'Message Sent ✓';
+  btn.style.background = '#4a7c59';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.innerHTML = isZh
+      ? '<span class="en">Send Message</span><span class="zh" style="display:revert">发送消息</span>'
+      : '<span class="en">Send Message</span><span class="zh">发送消息</span>';
+    btn.style.background = '';
+    btn.disabled = false;
+    e.target.reset();
+  }, 3000);
+}
+
+
+/* ─ Run on load ─ */
+init();
+</script>
+
+</body>
+</html>
