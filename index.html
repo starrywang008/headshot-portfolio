@@ -724,12 +724,12 @@
       <span class="zh">你好，我是 Starry。</span>
     </h2>
     <p class="sec-sub">
-      <span class="en">Hi, I'm Starry — a SF Bay Area-based photographer with a background in education and learning design. That background shapes everything about how I shoot: I'm obsessive about reading people, I know how to create a space where you genuinely relax, and I can always find the moment when your guard comes down and your real personality shows up.</span>
-      <span class="zh">你好，我是 Starry——旧金山湾区的形象照摄影师，背景是教育与学习体验设计。这段经历深刻影响了我的拍摄方式：我很擅长观察人，知道如何营造让人真正放松的氛围，也总能捕捉到你卸下防备、真实个性流露的那一刻。</span>
+      <span class="en">Hi, I'm Starry — a photographer based in the SF Bay Area. I grew up in a coastal city in Guangdong, southern China, and picked up a camera for the first time three years ago in New York. What started as a way to see the city slowly became something I couldn't put down.</span>
+      <span class="zh">你好，我是 Starry——旧金山湾区的形象照摄影师。我来自广东南方的一座海滨城市，三年前在纽约第一次拿起相机，从此一发不可收拾。</span>
     </p>
     <p class="sec-sub">
-      <span class="en">I came to headshot photography because I believe the right photo changes things. A great headshot has opened doors for my clients — new jobs, speaking invitations, brand deals. I want that for you too.</span>
-      <span class="zh">我做形象照，因为我相信一张对的照片能改变很多事。我的客户靠着一张好的形象照收到了新工作邀约、演讲机会和品牌合作。我也希望这发生在你身上。</span>
+      <span class="en">My background in education and learning design shapes how I work: I know how to read a room, make people feel at ease, and find the moment when your real personality shows up on camera. A great headshot has opened doors for my clients — new jobs, speaking invitations, brand collaborations. I want that for you too.</span>
+      <span class="zh">我的教育与学习体验设计背景影响了我拍照的方式：我擅长观察人、营造放松的氛围，总能捕捉到你最真实的那一面。我的客户靠着一张好的形象照收到了新工作邀约、演讲机会和品牌合作机会。我也希望这发生在你身上。</span>
     </p>
     <div class="about-stats">
       <div>
@@ -951,21 +951,45 @@ window.addEventListener('scroll', () => {
 
 
 /* ─ Contact form feedback ─ */
-function handleSubmit(e) {
+async function handleSubmit(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('.form-btn');
+  const form = e.target;
+  const btn  = form.querySelector('.form-btn');
   const isZh = document.body.classList.contains('lang-zh');
-  btn.innerHTML = isZh ? '消息已发送 ✓' : 'Message Sent ✓';
-  btn.style.background = '#4a7c59';
+
   btn.disabled = true;
-  setTimeout(() => {
-    btn.innerHTML = isZh
-      ? '<span class="en">Send Message</span><span class="zh" style="display:revert">发送消息</span>'
-      : '<span class="en">Send Message</span><span class="zh">发送消息</span>';
-    btn.style.background = '';
-    btn.disabled = false;
-    e.target.reset();
-  }, 3000);
+  btn.innerHTML = isZh ? '发送中…' : 'Sending…';
+
+  try {
+    const res = await fetch('https://formspree.io/f/mkoylqvy', {
+      method:  'POST',
+      body:    new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      btn.innerHTML = isZh ? '消息已发送 ✓' : 'Message Sent ✓';
+      btn.style.background = '#4a7c59';
+      form.reset();
+      setTimeout(() => {
+        btn.innerHTML = '<span class="en">Send Message</span><span class="zh">发送消息</span>';
+        btn.style.background = '';
+        btn.disabled = false;
+        if (isZh) document.querySelectorAll('.zh').forEach(el => el.style.display = 'revert');
+      }, 3000);
+    } else {
+      throw new Error('server error');
+    }
+  } catch {
+    btn.innerHTML = isZh ? '发送失败，请重试' : 'Failed — please try again';
+    btn.style.background = '#b94a3a';
+    setTimeout(() => {
+      btn.innerHTML = '<span class="en">Send Message</span><span class="zh">发送消息</span>';
+      btn.style.background = '';
+      btn.disabled = false;
+      if (isZh) document.querySelectorAll('.zh').forEach(el => el.style.display = 'revert');
+    }, 3000);
+  }
 }
 
 
