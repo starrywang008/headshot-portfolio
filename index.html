@@ -790,36 +790,36 @@
 
     <!-- Form -->
     <form class="contact-form" onsubmit="handleSubmit(event)">
+      <input type="hidden" name="_subject" value="New booking inquiry — Starry Wang Photography" />
       <div class="fg">
         <label><span class="en">First Name</span><span class="zh">名</span></label>
-        <input type="text" placeholder="Jane" required />
+        <input type="text" name="first_name" placeholder="Jane" required />
       </div>
       <div class="fg">
         <label><span class="en">Last Name</span><span class="zh">姓</span></label>
-        <input type="text" placeholder="Smith" required />
+        <input type="text" name="last_name" placeholder="Smith" required />
       </div>
       <div class="fg">
         <label><span class="en">Email</span><span class="zh">邮箱</span></label>
-        <input type="email" placeholder="jane@company.com" required />
+        <input type="email" name="email" placeholder="jane@company.com" required />
       </div>
       <div class="fg">
         <label><span class="en">Phone (optional)</span><span class="zh">电话（选填）</span></label>
-        <input type="tel" placeholder="+1 (212) 000-0000" />
+        <input type="tel" name="phone" placeholder="+1 (212) 000-0000" />
       </div>
       <div class="fg wide">
         <label><span class="en">Interested In</span><span class="zh">感兴趣的套餐</span></label>
-        <select>
-          <option value=""><span class="en">Select a package...</span></option>
-          <option class="en" value="essential">Essential — $<span class="price-essential">299</span></option>
-          <option class="en" value="professional">Professional — $<span class="price-professional">549</span></option>
-          <option class="en" value="premium">Premium — $<span class="price-premium">899</span></option>
-          <option class="en" value="custom">Custom / Team Shoot</option>
+        <select name="package">
+          <option value="">Select a package / 请选择套餐...</option>
+          <option value="Essential — $299">Essential — $299</option>
+          <option value="Professional — $549">Professional — $549</option>
+          <option value="Premium — $899">Premium — $899</option>
+          <option value="Custom / Team">Custom / Team · 定制 / 团队</option>
         </select>
       </div>
       <div class="fg wide">
         <label><span class="en">Message</span><span class="zh">留言</span></label>
-        <textarea>
-        </textarea>
+        <textarea name="message" placeholder="Tell me a little about what you're looking for..."></textarea>
       </div>
       <button type="submit" class="form-btn">
         <span class="en">Send Message</span><span class="zh">发送消息</span>
