@@ -789,8 +789,9 @@
     </div>
 
     <!-- Form -->
-    <form class="contact-form" onsubmit="handleSubmit(event)">
+    <form class="contact-form" action="https://formspree.io/f/mkoylqvy" method="POST">
       <input type="hidden" name="_subject" value="New booking inquiry — Starry Wang Photography" />
+      <input type="hidden" name="_next" value="https://starrywang008.github.io/headshot-portfolio/?sent=1" />
       <div class="fg">
         <label><span class="en">First Name</span><span class="zh">名</span></label>
         <input type="text" name="first_name" placeholder="Jane" required />
@@ -995,6 +996,22 @@ async function handleSubmit(e) {
 
 /* ─ Run on load ─ */
 init();
+
+/* ─ Show thank-you banner if redirected back after form submit ─ */
+if (new URLSearchParams(window.location.search).get('sent') === '1') {
+  const banner = document.createElement('div');
+  const isZh = document.body.classList.contains('lang-zh');
+  banner.innerHTML = isZh ? '✓ 消息已发送！我会在 24 小时内与你联系。' : '✓ Message sent! I\'ll get back to you within 24 hours.';
+  Object.assign(banner.style, {
+    position: 'fixed', bottom: '32px', left: '50%', transform: 'translateX(-50%)',
+    background: '#4a7c59', color: 'white', padding: '14px 28px',
+    fontSize: '14px', letterSpacing: '0.5px', zIndex: '999',
+    boxShadow: '0 4px 20px rgba(0,0,0,0.15)'
+  });
+  document.body.appendChild(banner);
+  setTimeout(() => banner.remove(), 5000);
+  history.replaceState({}, '', window.location.pathname);
+}
 </script>
 
 </body>
