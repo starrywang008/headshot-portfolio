@@ -558,16 +558,16 @@
 <section class="hero" id="home">
   <div>
     <p class="hero-eyebrow">
-      <span class="en">Professional Headshot Photography · New York</span>
-      <span class="zh">专业形象照摄影 · 纽约</span>
+      <span class="en">Professional Headshot Photography · SF Bay Area</span>
+      <span class="zh">专业形象照摄影 · 旧金山湾区</span>
     </p>
     <h1 class="hero-title">
       <span class="en">Your story,<br><em>perfectly</em><br>framed.</span>
       <span class="zh">你的故事，<br><em>完美</em><br>定格。</span>
     </h1>
     <p class="hero-sub">
-      <span class="en">I create headshots that open doors — clean, confident, and unmistakably you. Trusted by executives, creatives, and professionals across New York.</span>
-      <span class="zh">我专注打造令人印象深刻的职业形象照——简洁、自信、100% 是你自己。深受纽约各行业高管、创业者与创意人的信任。</span>
+      <span class="en">I create headshots that open doors — clean, confident, and unmistakably you. Trusted by executives, creatives, and professionals across the SF Bay Area.</span>
+      <span class="zh">我专注打造令人印象深刻的职业形象照——简洁、自信、100% 是你自己。深受旧金山湾区各行业高管、创业者与创意人的信任。</span>
     </p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">
@@ -724,8 +724,8 @@
       <span class="zh">你好，我是 Starry。</span>
     </h2>
     <p class="sec-sub">
-      <span class="en">Hi, I'm Starry — a New York-based photographer with a background in education and learning design. That background shapes everything about how I shoot: I'm obsessive about reading people, I know how to create a space where you genuinely relax, and I can always find the moment when your guard comes down and your real personality shows up.</span>
-      <span class="zh">你好，我是 Starry——纽约的形象照摄影师，背景是教育与学习体验设计。这段经历深刻影响了我的拍摄方式：我很擅长观察人，知道如何营造让人真正放松的氛围，也总能捕捉到你卸下防备、真实个性流露的那一刻。</span>
+      <span class="en">Hi, I'm Starry — a SF Bay Area-based photographer with a background in education and learning design. That background shapes everything about how I shoot: I'm obsessive about reading people, I know how to create a space where you genuinely relax, and I can always find the moment when your guard comes down and your real personality shows up.</span>
+      <span class="zh">你好，我是 Starry——旧金山湾区的形象照摄影师，背景是教育与学习体验设计。这段经历深刻影响了我的拍摄方式：我很擅长观察人，知道如何营造让人真正放松的氛围，也总能捕捉到你卸下防备、真实个性流露的那一刻。</span>
     </p>
     <p class="sec-sub">
       <span class="en">I came to headshot photography because I believe the right photo changes things. A great headshot has opened doors for my clients — new jobs, speaking invitations, brand deals. I want that for you too.</span>
@@ -772,8 +772,8 @@
 
       <p class="ci-lbl"><span class="en">Location</span><span class="zh">地点</span></p>
       <p class="ci-val">
-        <span class="en">New York, NY · Studio + On-location available</span>
-        <span class="zh">纽约 · 工作室拍摄 / 外拍均可</span>
+        <span class="en">SF Bay Area · Studio + On-location available</span>
+        <span class="zh">旧金山湾区 · 工作室拍摄 / 外拍均可</span>
       </p>
 
       <p class="ci-lbl"><span class="en">Turnaround</span><span class="zh">交付周期</span></p>
@@ -785,8 +785,6 @@
       <p class="ci-lbl"><span class="en">Follow</span><span class="zh">关注我</span></p>
       <p class="ci-val">
         <a id="link-instagram" href="#" target="_blank">Instagram</a>
-        &ensp;·&ensp;
-        <a id="link-linkedin" href="#" target="_blank">LinkedIn</a>
       </p>
     </div>
 
@@ -842,7 +840,6 @@
   </span>
   <div class="footer-links">
     <a id="footer-instagram" href="#" target="_blank">Instagram</a>
-    <a id="footer-linkedin"  href="#" target="_blank">LinkedIn</a>
     <a id="footer-wechat"    href="#">WeChat</a>
   </div>
 </footer>
@@ -859,7 +856,7 @@ const CONFIG = {
   name:       "Starry Wang",          // Your name (appears in nav + footer)
   email:      "starrywang008@gmail.com",
   instagram:  "https://www.instagram.com/starrywang_photography?igsh=NTc4MTIwNjQ2YQ%3D%3D",
-  linkedin:   "https://linkedin.com/in/yourprofile", // ✏️ Your LinkedIn URL
+
   wechat:     "#",                    // ✏️ WeChat link or page
 
   stats: {
@@ -887,7 +884,7 @@ function init() {
   if (emailEl) { emailEl.href = `mailto:${CONFIG.email}`; emailEl.textContent = CONFIG.email; }
 
   // Links
-  ['instagram','linkedin','wechat'].forEach(key => {
+  ['instagram','wechat'].forEach(key => {
     ['link-' + key, 'footer-' + key].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.href = CONFIG[key];
